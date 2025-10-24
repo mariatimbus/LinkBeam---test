@@ -1,69 +1,92 @@
-# LinkBeam
+# LinkBeam Web NFC Card
 
-One tap. One link. Your professional profile, portfolio, and contacts—delivered instantly.
-
-## Overview
-
-LinkBeam is a SwiftUI iOS application that lets you encode your professional landing page onto any NFC tag. When someone taps their iPhone on your tag, they are taken directly to your curated LinkBeam card featuring your CV, LinkedIn, GitHub, and contact information.
+LinkBeam is a React single-page app that lets you encode your robotics Linktree URL onto an NFC tag so anyone can open it with a tap. The default destination is [`https://linktr.ee/qrobotics`](https://linktr.ee/qrobotics), giving quick access to your CV, LinkedIn, GitHub, and contact details.
 
 ## Features
 
-- ✏️ **Personalized profile** – Edit your name, headline, and professional links directly inside the app.
-- 📇 **Shareable contact card** – Preview the landing page experience with quick actions for LinkedIn, GitHub, and email.
-- 📶 **NFC writer** – Program compatible NFC tags with a single tap so other devices instantly open your LinkBeam card.
-- 🔁 **Rewrite ready** – Update your details at any time and rewrite the same tag with your refreshed profile link.
+- ⚡ **Instant Linktree sharing** – Write the Linktree URL to a blank NFC tag and open it on another device with a tap.
+- 📲 **Mobile-friendly interface** – Responsive layout that works on phones, tablets, and desktops.
+- 🧭 **Guided NFC workflow** – Step-by-step prompts for checking Web NFC support and programming a tag.
+- 📝 **Copy-friendly card** – Copy the Linktree URL to your clipboard for sharing in chats, emails, or QR codes.
+
+## Tech Stack
+
+- [React 18](https://react.dev)
+- [Vite](https://vitejs.dev/) development tooling
+- Web NFC API (Chrome for Android 89+)
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 18 or newer
+- npm 9+
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
+
+```bash
+npm run dev
+```
+
+The command prints a local URL (for example `http://localhost:5173`). Open it in your browser to use LinkBeam. Vite automatically reloads the page when you edit the source files.
+
+### Build for production
+
+```bash
+npm run build
+```
+
+This generates a `dist/` directory with static assets that you can deploy to any static web host (Vercel, Netlify, GitHub Pages, etc.).
+
+## Programming an NFC tag
+
+1. Open the LinkBeam app on a Chrome for Android device that supports Web NFC.
+2. Tap **Start writing** and grant NFC permission when prompted.
+3. Hold a blank NTAG215/NTAG216 (or other NDEF-compatible) tag to the back of your phone until the vibration confirms the write.
+4. Test the tag by tapping it with another NFC-enabled phone—the browser should immediately open `https://linktr.ee/qrobotics`.
+
+> ℹ️ Web NFC currently works on Android phones in Chrome 89+. iOS browsers do not support Web NFC writing yet. For iPhones, consider writing the tag from an Android device and then sharing it with everyone.
+
+## Installing LinkBeam on your phone
+
+You can add the app to your home screen for a native-like experience:
+
+- **Android (Chrome)**
+  1. Open the development or deployed LinkBeam URL in Chrome.
+  2. Tap the ⋮ menu and choose **Add to Home screen**.
+  3. Confirm the name “LinkBeam” and tap **Add**.
+  4. Launch LinkBeam from your home screen and program tags whenever you need.
+
+- **iPhone (Safari)**
+  1. Open the LinkBeam URL in Safari.
+  2. Tap the share icon and select **Add to Home Screen**.
+  3. Tap **Add** to install the shortcut.
+  4. Although iPhones cannot write tags via Web NFC yet, you can still copy and share the Linktree URL or scan tags written elsewhere.
 
 ## Project Structure
 
 ```
-LinkBeamApp/
-├── LinkBeamApp.swift        # Application entry point
-├── ContentView.swift        # Main experience with profile summary and NFC writer sheet
-├── ProfileSummaryCard.swift # Card-style display of key profile details
-├── LinkPreviewCard.swift    # Web card preview with actionable links
-├── ProfileEditorView.swift  # Form for editing profile information
-├── WriterSheet.swift        # NFC writing workflow
-├── Managers/
-│   └── NFCWriter.swift      # CoreNFC wrapper that writes the LinkBeam URL to a tag
-├── Models/
-│   ├── ContactProfile.swift # Data model for profile, links, and contact details
-│   └── ContactProfileStore.swift # Observable store for profile state
-└── Resources/
-    ├── Info.plist           # App configuration and NFC usage strings
-    └── LaunchScreen.storyboard
+├── index.html
+├── package.json
+├── public/
+│   └── linkbeam.svg
+├── src/
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   └── components/
+│       ├── ContactCard.jsx
+│       ├── NFCWriter.jsx
+│       └── ResourceList.jsx
+└── vite.config.js
 ```
 
-## Requirements
+## Customizing the destination URL
 
-- Xcode 15 or newer
-- iOS 16+ deployment target
-- A compatible iPhone with NFC writing support (iPhone 7 or later)
-- Blank NFC tags that support NDEF writing
-
-## Getting Started
-
-1. Open `LinkBeamApp` in Xcode.
-2. Ensure the signing & capabilities tab includes the **Near Field Communication Tag Reading** entitlement (Xcode will prompt you).
-3. Update the default profile information in the simulator or on device.
-4. Tap **Write NFC Link** and hold your iPhone near a blank NFC tag to encode your LinkBeam URL.
-5. Test by tapping the programmed tag with another iPhone—Safari will open your LinkBeam landing page automatically.
-
-> **Tip:** Host your CV, LinkedIn, GitHub, and contact details on a single mobile-friendly page (e.g., `https://yourname.com/card`). Enter that URL as your primary link so that every NFC tap directs people to the complete profile.
-
-## Download & Installation
-
-Because LinkBeam is a sample application, distribution happens through the Xcode project rather than the App Store. Choose the option that fits your workflow:
-
-### Option A — Quick simulator build
-
-1. Clone this repository: `git clone https://github.com/yourname/LinkBeam.git`
-2. Open `LinkBeamApp/LinkBeamApp.xcodeproj` in Xcode.
-3. Select an iOS Simulator target (iPhone 15 or similar) and press **⌘R** to build and run.
-
-### Option B — Install on your iPhone
-
-1. Connect your iPhone via USB or Wi‑Fi and select it as the active run destination in Xcode.
-2. Ensure your Apple ID or team provisioning profile is added under **Xcode ▸ Settings ▸ Accounts**.
-3. Update the bundle identifier in **Signing & Capabilities** to match your team ID (e.g., `com.yourname.LinkBeam`).
-4. Press **⌘R** to build and install the app on your device. The first launch may prompt you to trust the developer profile in **Settings ▸ General ▸ VPN & Device Management**.
-5. Once installed, you can tap **Write NFC Link** on a physical NFC tag to program your landing-page URL.
+The app writes the Linktree URL defined in `src/App.jsx` (`LINKTREE_URL`). Replace it with your own link, rebuild, and redeploy to program tags with your personal landing page.
