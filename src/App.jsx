@@ -3,7 +3,7 @@ import ContactCard from './components/ContactCard.jsx';
 import NFCWriter from './components/NFCWriter.jsx';
 import ResourceList from './components/ResourceList.jsx';
 
-const LINKTREE_URL = 'https://linktr.ee/qrobotics';
+const LINKTREE_URL = 'https://linktr.ee/mariatimbus';
 
 export default function App() {
   const [lastWrite, setLastWrite] = useState(null);
@@ -16,7 +16,7 @@ export default function App() {
           LinkBeam NFC Card
         </p>
         <h1 style={{ fontSize: '2.75rem', marginBottom: '0.75rem', fontWeight: 700 }}>
-          Share your robotics profile in a tap
+          Share your story in a single tap
         </h1>
         <p style={{ maxWidth: '640px', margin: '0 auto', color: '#cbd5f5' }}>
           Program an NFC tag so that anyone who taps their phone on it opens your Linktree profile.

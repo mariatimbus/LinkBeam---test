@@ -1,6 +1,6 @@
 # LinkBeam Web NFC Card
 
-LinkBeam is a React single-page app that lets you encode your robotics Linktree URL onto an NFC tag so anyone can open it with a tap. The default destination is [`https://linktr.ee/qrobotics`](https://linktr.ee/qrobotics), giving quick access to your CV, LinkedIn, GitHub, and contact details.
+LinkBeam is a React single-page app that lets you encode your Linktree URL onto an NFC tag so anyone can open it with a tap. The default destination is [`https://linktr.ee/mariatimbus`](https://linktr.ee/mariatimbus), giving quick access to CV highlights, LinkedIn, GitHub, and contact details.
 
 ## Features
 
@@ -49,25 +49,29 @@ This generates a `dist/` directory with static assets that you can deploy to any
 1. Open the LinkBeam app on a Chrome for Android device that supports Web NFC.
 2. Tap **Start writing** and grant NFC permission when prompted.
 3. Hold a blank NTAG215/NTAG216 (or other NDEF-compatible) tag to the back of your phone until the vibration confirms the write.
-4. Test the tag by tapping it with another NFC-enabled phone—the browser should immediately open `https://linktr.ee/qrobotics`.
+4. Test the tag by tapping it with another NFC-enabled phone—the browser should immediately open `https://linktr.ee/mariatimbus`.
 
 > ℹ️ Web NFC currently works on Android phones in Chrome 89+. iOS browsers do not support Web NFC writing yet. For iPhones, consider writing the tag from an Android device and then sharing it with everyone.
 
-## Installing LinkBeam on your phone
+## Install LinkBeam on your devices
 
-You can add the app to your home screen for a native-like experience:
+### Android phone (Chrome)
+1. Open your deployed or local LinkBeam URL in Chrome on Android.
+2. Tap the ⋮ menu in the top-right corner and choose **Add to Home screen**.
+3. Confirm the name “LinkBeam” (or customize it) and tap **Add** → **Add to Home screen**.
+4. Launch LinkBeam from your home screen. Make sure NFC is enabled in **Settings → Connected devices → Connection preferences → NFC** before writing a tag.
 
-- **Android (Chrome)**
-  1. Open the development or deployed LinkBeam URL in Chrome.
-  2. Tap the ⋮ menu and choose **Add to Home screen**.
-  3. Confirm the name “LinkBeam” and tap **Add**.
-  4. Launch LinkBeam from your home screen and program tags whenever you need.
+### iPhone (Safari)
+1. Open the LinkBeam URL in Safari on your iPhone.
+2. Tap the share icon and select **Add to Home Screen**.
+3. Tap **Add** to install the shortcut.
+4. iPhones cannot write NFC tags via Web NFC yet, but you can still copy the Linktree link, scan tags written on Android, and share the page instantly.
 
-- **iPhone (Safari)**
-  1. Open the LinkBeam URL in Safari.
-  2. Tap the share icon and select **Add to Home Screen**.
-  3. Tap **Add** to install the shortcut.
-  4. Although iPhones cannot write tags via Web NFC yet, you can still copy and share the Linktree URL or scan tags written elsewhere.
+### Laptop or desktop
+1. Clone or download this repository onto your computer.
+2. Run `npm install` followed by `npm run dev` to start the development server locally.
+3. Open the printed local URL (for example `http://localhost:5173`) in your browser to use LinkBeam.
+4. When you are ready to ship, run `npm run build` and deploy the contents of the generated `dist/` folder to any static hosting provider.
 
 ## Project Structure
 

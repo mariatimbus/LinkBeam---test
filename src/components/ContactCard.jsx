@@ -18,9 +18,9 @@ export default function ContactCard({ link, onCopy }) {
         boxShadow: '0 18px 50px rgba(15, 23, 42, 0.35)',
       }}
     >
-      <h2 style={{ marginTop: 0, marginBottom: '0.5rem', fontSize: '1.75rem' }}>Your robotics calling card</h2>
+      <h2 style={{ marginTop: 0, marginBottom: '0.5rem', fontSize: '1.75rem' }}>Preview the Linktree experience</h2>
       <p style={{ marginTop: 0, marginBottom: '1.25rem', color: '#cbd5e1' }}>
-        This preview is what people will see after tapping your NFC tag. Customize it on Linktree any time.
+        This preview is what people will see after tapping your NFC tag. Update your Linktree whenever you have new work to share.
       </p>
 
       <div
