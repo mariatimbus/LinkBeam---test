@@ -10,34 +10,15 @@ interface FloorPlanProps {
   selectedDate: string;
 }
 
-type SpaceAvailability = 'available' | 'partial' | 'unavailable';
+type SeatAvailability = 'available' | 'unavailable';
 
-function getAvailabilityBadge(
+function getSeatAvailability(
   spaceId: string,
   selectedDate: string,
-  isSpaceAvailable: ReturnType<typeof useBookingContext>['isSpaceAvailable'],
   bookings: ReturnType<typeof useBookingContext>['bookings']
-): SpaceAvailability {
-  const todayBookings = (bookings[spaceId] ?? []).filter((booking) => booking.date === selectedDate);
-
-  if (todayBookings.length === 0) {
-    return 'available';
-  }
-
-  const fullDayBooked = todayBookings.some((booking) => booking.timeSlot === 'Full Day');
-
-  if (fullDayBooked) {
-    return 'unavailable';
-  }
-
-  const morningBooked = !isSpaceAvailable(spaceId, selectedDate, 'Morning');
-  const afternoonBooked = !isSpaceAvailable(spaceId, selectedDate, 'Afternoon');
-
-  if (morningBooked && afternoonBooked) {
-    return 'unavailable';
-  }
-
-  return 'partial';
+): SeatAvailability {
+  const todaysBookings = (bookings[spaceId] ?? []).filter((booking) => booking.date === selectedDate);
+  return todaysBookings.length === 0 ? 'available' : 'unavailable';
 }
 
 function FloorPlanComponent({ spaces, selectedSpaceId, onSelect, selectedDate }: FloorPlanProps) {
@@ -45,32 +26,30 @@ function FloorPlanComponent({ spaces, selectedSpaceId, onSelect, selectedDate }:
 
   return (
     <div className="floor-plan">
-      <img src="/floorplan.svg" alt="Simplified office floor plan" className="floor-plan__image" />
+      <img src="/floorplan.svg" alt="Openspace floor plan" className="floor-plan__image" />
       {spaces.map((space) => {
-        const availability = getAvailabilityBadge(space.id, selectedDate, bookingContext.isSpaceAvailable, bookingContext.bookings);
+        const availability = getSeatAvailability(space.id, selectedDate, bookingContext.bookings);
         const isSelected = selectedSpaceId === space.id;
+        const label = space.label;
 
         return (
           <button
             key={space.id}
-            className={`floor-plan__space floor-plan__space--${space.type} floor-plan__space--${availability} ${
-              isSelected ? 'floor-plan__space--selected' : ''
+            className={`floor-plan__seat floor-plan__seat--${availability} ${
+              isSelected ? 'floor-plan__seat--selected' : ''
             }`}
             style={{
               left: `${space.coordinates.left}%`,
-              top: `${space.coordinates.top}%`,
-              width: space.coordinates.width ? `${space.coordinates.width}%` : undefined,
-              height: space.coordinates.height ? `${space.coordinates.height}%` : undefined
+              top: `${space.coordinates.top}%`
             }}
             type="button"
             onClick={() => onSelect(space.id)}
+            aria-label={`${space.name}. ${availability === 'available' ? 'Available' : 'Occupied'} on ${selectedDate}.`}
+            title={`${space.name} · ${space.zone}`}
           >
-            <span className="space-name">{space.name}</span>
-            <span className="space-meta">{space.type === 'desk' ? `${space.capacity} desks` : `${space.capacity} ppl`}</span>
-            <span className={`availability-pill availability-pill--${availability}`}>
-              {availability === 'available' && 'Available'}
-              {availability === 'partial' && 'Partially booked'}
-              {availability === 'unavailable' && 'Fully booked'}
+            <span className="sr-only">{space.name}</span>
+            <span className="floor-plan__seat-label" aria-hidden="true">
+              {label}
             </span>
           </button>
         );

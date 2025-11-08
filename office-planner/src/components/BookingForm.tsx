@@ -9,12 +9,14 @@ interface BookingFormProps {
 
 export function BookingForm({ spaceId, date }: BookingFormProps) {
   const { bookSpace } = useBookingContext();
+  const defaultSlot = timeSlots[0];
   const [employeeName, setEmployeeName] = useState('');
-  const [selectedSlot, setSelectedSlot] = useState<(typeof timeSlots)[number]>('Full Day');
+  const [selectedSlot, setSelectedSlot] = useState<(typeof timeSlots)[number]>(defaultSlot);
   const [notes, setNotes] = useState('');
   const [feedback, setFeedback] = useState<{ message: string; tone: 'positive' | 'negative' } | null>(null);
 
   const isValid = useMemo(() => employeeName.trim().length > 1, [employeeName]);
+  const hasMultipleSlots = timeSlots.length > 1;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,7 +32,7 @@ export function BookingForm({ spaceId, date }: BookingFormProps) {
     if (result.success) {
       setEmployeeName('');
       setNotes('');
-      setSelectedSlot('Full Day');
+      setSelectedSlot(defaultSlot);
     }
   }
 
@@ -41,24 +43,31 @@ export function BookingForm({ spaceId, date }: BookingFormProps) {
         <input type="text" value={employeeName} onChange={(event) => setEmployeeName(event.target.value)} placeholder="e.g. Jordan Lee" />
       </label>
 
-      <label className="form-label">
-        Time slot
-        <select value={selectedSlot} onChange={(event) => setSelectedSlot(event.target.value as (typeof timeSlots)[number])}>
-          {timeSlots.map((slot) => (
-            <option key={slot} value={slot}>
-              {slot}
-            </option>
-          ))}
-        </select>
-      </label>
+      {hasMultipleSlots ? (
+        <label className="form-label">
+          Time slot
+          <select value={selectedSlot} onChange={(event) => setSelectedSlot(event.target.value as (typeof timeSlots)[number])}>
+            {timeSlots.map((slot) => (
+              <option key={slot} value={slot}>
+                {slot}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : (
+        <div className="form-label">
+          <span>Time slot</span>
+          <span className="readonly-pill">{defaultSlot}</span>
+        </div>
+      )}
 
       <label className="form-label">
         Notes
-        <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Share purpose, guests, or setup needs" rows={3} />
+        <textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Share purpose or guests" rows={3} />
       </label>
 
       <button type="submit" className="primary-button">
-        Reserve space
+        Reserve seat
       </button>
 
       {feedback && <div className={`callout ${feedback.tone === 'negative' ? 'warning' : ''}`}>{feedback.message}</div>}

@@ -13,7 +13,7 @@ export function BookingSidebar({ space, selectedDate, onDateChange }: BookingSid
   if (!space) {
     return (
       <aside className="panel sidebar">
-        <div className="empty-state">Select a space on the floor plan to review its details.</div>
+        <div className="empty-state">Select a seat on the map to review its details.</div>
       </aside>
     );
   }
@@ -28,8 +28,8 @@ export function BookingSidebar({ space, selectedDate, onDateChange }: BookingSid
           </div>
           <div className="space-summary__body">{space.description}</div>
           <div className="space-summary__tags">
+            <span className="tag">Seat {space.label}</span>
             <span className="tag">Capacity {space.capacity}</span>
-            <span className="tag">{space.type === 'desk' ? 'Desk cluster' : space.type === 'room' ? 'Meeting room' : 'Collaboration zone'}</span>
             {space.amenities.map((amenity) => (
               <span key={amenity} className="tag">
                 {amenity}
@@ -40,7 +40,7 @@ export function BookingSidebar({ space, selectedDate, onDateChange }: BookingSid
       </section>
 
       <section className="sidebar__section">
-        <h3>Reserve this space</h3>
+        <h3>Reserve this seat</h3>
         <label className="form-label" style={{ marginBottom: '1rem' }}>
           Choose a date
           <input type="date" value={selectedDate} onChange={(event) => onDateChange(event.target.value)} />

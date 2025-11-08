@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { BookingProvider } from './context/BookingContext';
-import { floorSpaces, type FloorSpace, type SpaceType } from './data/floorSpaces';
+import { floorSpaces, type FloorSpace } from './data/floorSpaces';
 import { FloorPlan } from './components/FloorPlan';
 import { SpaceFilters } from './components/SpaceFilters';
 import { Legend } from './components/Legend';
@@ -14,7 +14,6 @@ function useToday() {
 function AppShell() {
   const [selectedSpaceId, setSelectedSpaceId] = useState<string | null>(floorSpaces[0]?.id ?? null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [typeFilter, setTypeFilter] = useState<SpaceType | 'all'>('all');
   const [zoneFilter, setZoneFilter] = useState<string>('all');
   const today = useToday();
   const [selectedDate, setSelectedDate] = useState<string>(today);
@@ -23,39 +22,37 @@ function AppShell() {
     const query = searchQuery.trim().toLowerCase();
 
     return floorSpaces.filter((space) => {
-      const matchesQuery = query.length === 0 || `${space.name} ${space.zone}`.toLowerCase().includes(query);
-      const matchesType = typeFilter === 'all' || space.type === typeFilter;
+      const matchesQuery =
+        query.length === 0 || `${space.name} ${space.zone} ${space.label}`.toLowerCase().includes(query);
       const matchesZone = zoneFilter === 'all' || space.zone === zoneFilter;
-      return matchesQuery && matchesType && matchesZone;
+      return matchesQuery && matchesZone;
     });
-  }, [searchQuery, typeFilter, zoneFilter]);
+  }, [searchQuery, zoneFilter]);
 
   const selectedSpace: FloorSpace | undefined = useMemo(
     () => floorSpaces.find((space) => space.id === selectedSpaceId) ?? filteredSpaces[0],
     [filteredSpaces, selectedSpaceId]
   );
 
-  const zones = useMemo(() => Array.from(new Set(floorSpaces.map((space) => space.zone))), []);
+  const zones = useMemo(() => Array.from(new Set(floorSpaces.map((space) => space.zone))).sort(), []);
 
   return (
     <div className="app-shell">
       <header className="app-header">
-        <h1>Atlas Office Planner</h1>
+        <h1>Atlas Openspace Seat Planner</h1>
         <p>
-          Visualize your workplace, reserve rooms, and find the right seat in seconds. Click any neighborhood or room on the map
-          to get started.
+          Browse the openspace map to find an available workstation. Seats turn green when free and red when already booked.
+          Select any seat to review its details and reserve it for the day.
         </p>
       </header>
 
       <main className="app-content">
-        <section className="panel" aria-label="Floor plan and space selection">
+        <section className="panel" aria-label="Floor plan and seat selection">
           <SpaceFilters
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
-            typeFilter={typeFilter}
-            onTypeFilterChange={(value) => setTypeFilter(value)}
             zoneFilter={zoneFilter}
-            onZoneFilterChange={(value) => setZoneFilter(value)}
+            onZoneFilterChange={setZoneFilter}
             availableZones={zones}
           />
 
