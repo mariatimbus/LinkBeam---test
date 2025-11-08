@@ -3,6 +3,7 @@ export type TimeSlot = 'Morning' | 'Afternoon' | 'Full Day';
 
 export interface FloorSpace {
   id: string;
+  label: string;
   name: string;
   type: SpaceType;
   zone: string;
@@ -17,117 +18,52 @@ export interface FloorSpace {
   description: string;
 }
 
-export const timeSlots: TimeSlot[] = ['Morning', 'Afternoon', 'Full Day'];
+export const timeSlots: TimeSlot[] = ['Full Day'];
 
-export const floorSpaces: FloorSpace[] = [
-  {
-    id: 'room-a',
-    name: 'Meeting Room A',
-    type: 'room',
-    zone: 'Northwest',
-    capacity: 10,
-    amenities: ['Display', 'Hybrid VC', 'Whiteboard'],
-    coordinates: { left: 6, top: 18, width: 10, height: 12 },
-    description: 'Ideal for workshops and hybrid meetings with full AV support.'
-  },
-  {
-    id: 'innovation-lab',
-    name: 'Innovation Lab',
-    type: 'room',
-    zone: 'Central West',
-    capacity: 14,
-    amenities: ['Flexible seating', '3D Printer', 'Brainstorm wall'],
-    coordinates: { left: 6, top: 42, width: 10, height: 12 },
-    description: 'Creative lab with flexible furniture and prototyping gear.'
-  },
-  {
-    id: 'room-b',
-    name: 'Meeting Room B',
-    type: 'room',
-    zone: 'Southwest',
-    capacity: 8,
-    amenities: ['Display', 'Conference phone'],
-    coordinates: { left: 6, top: 66, width: 10, height: 12 },
-    description: 'Comfortable project room perfect for daily stand-ups.'
-  },
-  {
-    id: 'quiet-pods',
-    name: 'Quiet Pods',
-    type: 'zone',
-    zone: 'Northeast',
-    capacity: 6,
-    amenities: ['Soundproof', 'Focus lighting'],
-    coordinates: { left: 84, top: 18, width: 10, height: 12 },
-    description: 'A set of sound-dampening pods for deep focus work.'
-  },
-  {
-    id: 'cafe-lounge',
-    name: 'Café Lounge',
-    type: 'zone',
-    zone: 'Central East',
-    capacity: 20,
-    amenities: ['Coffee bar', 'Soft seating', 'Town hall'],
-    coordinates: { left: 84, top: 42, width: 10, height: 12 },
-    description: 'Hospitality-inspired lounge encouraging informal collaboration.'
-  },
-  {
-    id: 'makers-space',
-    name: 'Makers Space',
-    type: 'zone',
-    zone: 'Southeast',
-    capacity: 12,
-    amenities: ['Workbench', 'Storage', 'Tools'],
-    coordinates: { left: 84, top: 66, width: 10, height: 12 },
-    description: 'Hands-on workshop with modular benches and fabrication tools.'
-  },
-  {
-    id: 'west-wing',
-    name: 'West Wing Desks',
-    type: 'desk',
-    zone: 'West Wing',
-    capacity: 42,
-    amenities: ['Dual monitors', 'Sit/stand', 'Focus pods'],
-    coordinates: { left: 24, top: 22, width: 26, height: 58 },
-    description: 'Desk neighborhood with adjustable furniture and acoustic panels.'
-  },
-  {
-    id: 'east-wing',
-    name: 'East Wing Desks',
-    type: 'desk',
-    zone: 'East Wing',
-    capacity: 44,
-    amenities: ['Dual monitors', 'Sit/stand', 'Library wall'],
-    coordinates: { left: 50, top: 22, width: 26, height: 58 },
-    description: 'Bright desk area adjacent to project breakout spaces.'
-  },
-  {
-    id: 'atrium',
-    name: 'Atrium',
-    type: 'zone',
-    zone: 'Central Core',
-    capacity: 18,
-    amenities: ['Natural light', 'Projection wall'],
-    coordinates: { left: 44, top: 18, width: 12, height: 40 },
-    description: 'Open atrium connecting both wings with flexible seating tiers.'
-  },
-  {
-    id: 'collab-zone',
-    name: 'Collaboration Zone',
-    type: 'zone',
-    zone: 'Southwest',
-    capacity: 16,
-    amenities: ['Writable walls', 'Soft seating', 'Mobile displays'],
-    coordinates: { left: 28, top: 74, width: 20, height: 14 },
-    description: 'Casual team zone with modular seating for impromptu syncs.'
-  },
-  {
-    id: 'project-zone',
-    name: 'Project Zone',
-    type: 'zone',
-    zone: 'Southeast',
-    capacity: 18,
-    amenities: ['Pin-up boards', 'Storage', 'Touchdown tables'],
-    coordinates: { left: 52, top: 74, width: 20, height: 14 },
-    description: 'Project landing area with touchdown tables and storage.'
-  }
+const sharedAmenities = ['Dual monitor arm', 'Ergonomic chair', 'Power + USB'];
+
+const zoneDescriptions: Record<string, string> = {
+  'West North Row': 'North run of the west workstation bank overlooking the exterior windows.',
+  'West South Row': 'South run of the west workstation bank bordering the central atrium.',
+  'East North Row': 'North run of the east workstation bank adjacent to the café breakout.',
+  'East South Row': 'South run of the east workstation bank closest to the maker pods.'
+};
+
+interface SeatConfig {
+  id: string;
+  label: string;
+  zone: keyof typeof zoneDescriptions;
+  left: number;
+  top: number;
+}
+
+const seats: SeatConfig[] = [
+  { id: 'desk-west-1', label: 'W1', zone: 'West North Row', left: 18, top: 32 },
+  { id: 'desk-west-2', label: 'W2', zone: 'West North Row', left: 26, top: 32 },
+  { id: 'desk-west-3', label: 'W3', zone: 'West North Row', left: 34, top: 32 },
+  { id: 'desk-west-4', label: 'W4', zone: 'West North Row', left: 42, top: 32 },
+  { id: 'desk-west-5', label: 'W5', zone: 'West South Row', left: 18, top: 64 },
+  { id: 'desk-west-6', label: 'W6', zone: 'West South Row', left: 26, top: 64 },
+  { id: 'desk-west-7', label: 'W7', zone: 'West South Row', left: 34, top: 64 },
+  { id: 'desk-west-8', label: 'W8', zone: 'West South Row', left: 42, top: 64 },
+  { id: 'desk-east-1', label: 'E1', zone: 'East North Row', left: 58, top: 32 },
+  { id: 'desk-east-2', label: 'E2', zone: 'East North Row', left: 66, top: 32 },
+  { id: 'desk-east-3', label: 'E3', zone: 'East North Row', left: 74, top: 32 },
+  { id: 'desk-east-4', label: 'E4', zone: 'East North Row', left: 82, top: 32 },
+  { id: 'desk-east-5', label: 'E5', zone: 'East South Row', left: 58, top: 64 },
+  { id: 'desk-east-6', label: 'E6', zone: 'East South Row', left: 66, top: 64 },
+  { id: 'desk-east-7', label: 'E7', zone: 'East South Row', left: 74, top: 64 },
+  { id: 'desk-east-8', label: 'E8', zone: 'East South Row', left: 82, top: 64 }
 ];
+
+export const floorSpaces: FloorSpace[] = seats.map((seat) => ({
+  id: seat.id,
+  label: seat.label,
+  name: `Seat ${seat.label}`,
+  type: 'desk',
+  zone: seat.zone,
+  capacity: 1,
+  amenities: sharedAmenities,
+  coordinates: { left: seat.left, top: seat.top },
+  description: zoneDescriptions[seat.zone]
+}));

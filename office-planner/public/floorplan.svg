@@ -1,72 +1,78 @@
-<svg width="1600" height="700" viewBox="0 0 1600 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Simplified Office Floor Plan</title>
-  <desc id="desc">A simplified recreation of the provided office layout with rooms, collaboration zones, and desk clusters.</desc>
+<svg width="1600" height="600" viewBox="0 0 1600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Atlas openspace workstation map</title>
+  <desc id="desc">Floor plan showing two banks of desks with central collaboration rooms, matching the provided openspace map.</desc>
   <defs>
-    <pattern id="deskPattern" width="40" height="40" patternUnits="userSpaceOnUse">
-      <rect width="36" height="18" x="2" y="11" rx="4" ry="4" fill="#d1e3ff" stroke="#2a4b9b" stroke-width="1.5" />
-      <rect width="12" height="12" x="14" y="2" rx="2" ry="2" fill="#f0f4ff" stroke="#2a4b9b" stroke-width="1.2" />
-    </pattern>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9c4a5" />
+      <stop offset="100%" stop-color="#c9b08a" />
+    </linearGradient>
+    <linearGradient id="walkway" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f3eadc" />
+      <stop offset="100%" stop-color="#e7ddce" />
+    </linearGradient>
   </defs>
-  <rect x="20" y="20" width="1560" height="660" fill="#f8f9fb" stroke="#333" stroke-width="6" />
-  <rect x="70" y="70" width="1460" height="560" fill="#ffffff" stroke="#c0c4cc" stroke-width="4" />
-  <g fill="#eef2f9" stroke="#adb3bf" stroke-width="3">
-    <rect x="320" y="130" width="320" height="460" />
-    <rect x="960" y="130" width="320" height="460" />
-    <rect x="700" y="130" width="220" height="460" fill="#e1e7f5" />
+  <rect x="20" y="20" width="1560" height="560" rx="36" fill="url(#wood)" stroke="#9a8b72" stroke-width="8" />
+  <rect x="80" y="80" width="1440" height="440" rx="28" fill="url(#walkway)" stroke="#cbb99d" stroke-width="4" />
+
+  <rect x="320" y="80" width="360" height="440" rx="24" fill="#eadbc9" stroke="#d1c1a8" stroke-width="4" opacity="0.65" />
+  <rect x="920" y="80" width="360" height="440" rx="24" fill="#eadbc9" stroke="#d1c1a8" stroke-width="4" opacity="0.65" />
+
+  <rect x="690" y="80" width="220" height="180" rx="20" fill="#f7f2ea" stroke="#cabca6" stroke-width="4" />
+  <rect x="690" y="340" width="220" height="180" rx="20" fill="#f7f2ea" stroke="#cabca6" stroke-width="4" />
+
+  <g fill="#fff8f0" stroke="#c2b198" stroke-width="3">
+    <rect x="150" y="110" width="180" height="120" rx="18" />
+    <rect x="150" y="240" width="180" height="120" rx="18" />
+    <rect x="150" y="370" width="180" height="120" rx="18" />
+
+    <rect x="1270" y="110" width="180" height="120" rx="18" />
+    <rect x="1270" y="240" width="180" height="120" rx="18" />
+    <rect x="1270" y="370" width="180" height="120" rx="18" />
   </g>
-  <g fill="#ffffff" stroke="#7a8699" stroke-width="2.5">
-    <rect x="90" y="120" width="200" height="120" rx="12" />
-    <rect x="90" y="280" width="200" height="120" rx="12" />
-    <rect x="90" y="440" width="200" height="120" rx="12" />
 
-    <rect x="1310" y="120" width="200" height="120" rx="12" />
-    <rect x="1310" y="280" width="200" height="120" rx="12" />
-    <rect x="1310" y="440" width="200" height="120" rx="12" />
+  <g stroke="#bba98f" stroke-dasharray="18 14" stroke-width="4" stroke-linecap="round" opacity="0.6">
+    <line x1="320" y1="220" x2="680" y2="220" />
+    <line x1="320" y1="360" x2="680" y2="360" />
+    <line x1="920" y1="220" x2="1280" y2="220" />
+    <line x1="920" y1="360" x2="1280" y2="360" />
   </g>
-  <g>
-    <rect x="320" y="130" width="320" height="460" fill="url(#deskPattern)" />
-    <rect x="960" y="130" width="320" height="460" fill="url(#deskPattern)" />
+
+  <g fill="#1f2937" opacity="0.7">
+    <rect x="265" y="169" width="46" height="46" rx="10" />
+    <rect x="393" y="169" width="46" height="46" rx="10" />
+    <rect x="521" y="169" width="46" height="46" rx="10" />
+    <rect x="649" y="169" width="46" height="46" rx="10" />
+
+    <rect x="265" y="361" width="46" height="46" rx="10" />
+    <rect x="393" y="361" width="46" height="46" rx="10" />
+    <rect x="521" y="361" width="46" height="46" rx="10" />
+    <rect x="649" y="361" width="46" height="46" rx="10" />
+
+    <rect x="905" y="169" width="46" height="46" rx="10" />
+    <rect x="1033" y="169" width="46" height="46" rx="10" />
+    <rect x="1161" y="169" width="46" height="46" rx="10" />
+    <rect x="1289" y="169" width="46" height="46" rx="10" />
+
+    <rect x="905" y="361" width="46" height="46" rx="10" />
+    <rect x="1033" y="361" width="46" height="46" rx="10" />
+    <rect x="1161" y="361" width="46" height="46" rx="10" />
+    <rect x="1289" y="361" width="46" height="46" rx="10" />
   </g>
-  <g fill="#2a4b9b" font-family="'Inter', sans-serif" font-size="22" font-weight="600">
-    <text x="180" y="190" text-anchor="middle">Meeting</text>
-    <text x="180" y="215" text-anchor="middle">Room A</text>
 
-    <text x="180" y="350" text-anchor="middle">Innovation</text>
-    <text x="180" y="375" text-anchor="middle">Lab</text>
+  <g fill="#5f4d33" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24" font-weight="600" text-anchor="middle">
+    <text x="200" y="190">Huddle Room</text>
+    <text x="200" y="320">Makers Lab</text>
+    <text x="200" y="450">Strategy Room</text>
 
-    <text x="180" y="510" text-anchor="middle">Meeting</text>
-    <text x="180" y="535" text-anchor="middle">Room B</text>
-
-    <text x="1410" y="190" text-anchor="middle">Quiet</text>
-    <text x="1410" y="215" text-anchor="middle">Pods</text>
-
-    <text x="1410" y="350" text-anchor="middle">Café</text>
-    <text x="1410" y="375" text-anchor="middle">Lounge</text>
-
-    <text x="1410" y="510" text-anchor="middle">Makers</text>
-    <text x="1410" y="535" text-anchor="middle">Space</text>
-
-    <text x="480" y="115" text-anchor="middle">West Wing Desks</text>
-    <text x="1120" y="115" text-anchor="middle">East Wing Desks</text>
+    <text x="1400" y="190">Focus Pods</text>
+    <text x="1400" y="320">Café Bar</text>
+    <text x="1400" y="450">Project Hub</text>
   </g>
-  <g fill="#5c6c80" font-family="'Inter', sans-serif" font-size="18">
-    <text x="810" y="170" text-anchor="middle">Atrium</text>
-    <text x="480" y="620" text-anchor="middle">Collaboration Zone</text>
-    <text x="1120" y="620" text-anchor="middle">Project Zone</text>
-  </g>
-  <g stroke="#6b7280" stroke-dasharray="6 8" stroke-width="2">
-    <line x1="320" y1="360" x2="640" y2="360" />
-    <line x1="960" y1="360" x2="1280" y2="360" />
-  </g>
-  <g fill="#9ba6b4" font-family="'Inter', sans-serif" font-size="14">
-    <text x="360" y="200">Pods</text>
-    <text x="360" y="240">Huddle</text>
-    <text x="360" y="400">Focus</text>
-    <text x="360" y="440">Stand-up</text>
 
-    <text x="1000" y="200">Pods</text>
-    <text x="1000" y="240">Huddle</text>
-    <text x="1000" y="400">Focus</text>
-    <text x="1000" y="440">Stand-up</text>
+  <g fill="#8b7356" font-family="'Inter', 'Segoe UI', sans-serif" font-size="20" font-weight="600" text-anchor="middle">
+    <text x="500" y="120">West Workstations</text>
+    <text x="1100" y="120">East Workstations</text>
+    <text x="800" y="140">Social Lounge</text>
+    <text x="800" y="400">Workshop Studio</text>
   </g>
 </svg>
