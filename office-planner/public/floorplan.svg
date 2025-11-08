@@ -1,0 +1,72 @@
+<svg width="1600" height="700" viewBox="0 0 1600 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Simplified Office Floor Plan</title>
+  <desc id="desc">A simplified recreation of the provided office layout with rooms, collaboration zones, and desk clusters.</desc>
+  <defs>
+    <pattern id="deskPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="36" height="18" x="2" y="11" rx="4" ry="4" fill="#d1e3ff" stroke="#2a4b9b" stroke-width="1.5" />
+      <rect width="12" height="12" x="14" y="2" rx="2" ry="2" fill="#f0f4ff" stroke="#2a4b9b" stroke-width="1.2" />
+    </pattern>
+  </defs>
+  <rect x="20" y="20" width="1560" height="660" fill="#f8f9fb" stroke="#333" stroke-width="6" />
+  <rect x="70" y="70" width="1460" height="560" fill="#ffffff" stroke="#c0c4cc" stroke-width="4" />
+  <g fill="#eef2f9" stroke="#adb3bf" stroke-width="3">
+    <rect x="320" y="130" width="320" height="460" />
+    <rect x="960" y="130" width="320" height="460" />
+    <rect x="700" y="130" width="220" height="460" fill="#e1e7f5" />
+  </g>
+  <g fill="#ffffff" stroke="#7a8699" stroke-width="2.5">
+    <rect x="90" y="120" width="200" height="120" rx="12" />
+    <rect x="90" y="280" width="200" height="120" rx="12" />
+    <rect x="90" y="440" width="200" height="120" rx="12" />
+
+    <rect x="1310" y="120" width="200" height="120" rx="12" />
+    <rect x="1310" y="280" width="200" height="120" rx="12" />
+    <rect x="1310" y="440" width="200" height="120" rx="12" />
+  </g>
+  <g>
+    <rect x="320" y="130" width="320" height="460" fill="url(#deskPattern)" />
+    <rect x="960" y="130" width="320" height="460" fill="url(#deskPattern)" />
+  </g>
+  <g fill="#2a4b9b" font-family="'Inter', sans-serif" font-size="22" font-weight="600">
+    <text x="180" y="190" text-anchor="middle">Meeting</text>
+    <text x="180" y="215" text-anchor="middle">Room A</text>
+
+    <text x="180" y="350" text-anchor="middle">Innovation</text>
+    <text x="180" y="375" text-anchor="middle">Lab</text>
+
+    <text x="180" y="510" text-anchor="middle">Meeting</text>
+    <text x="180" y="535" text-anchor="middle">Room B</text>
+
+    <text x="1410" y="190" text-anchor="middle">Quiet</text>
+    <text x="1410" y="215" text-anchor="middle">Pods</text>
+
+    <text x="1410" y="350" text-anchor="middle">Café</text>
+    <text x="1410" y="375" text-anchor="middle">Lounge</text>
+
+    <text x="1410" y="510" text-anchor="middle">Makers</text>
+    <text x="1410" y="535" text-anchor="middle">Space</text>
+
+    <text x="480" y="115" text-anchor="middle">West Wing Desks</text>
+    <text x="1120" y="115" text-anchor="middle">East Wing Desks</text>
+  </g>
+  <g fill="#5c6c80" font-family="'Inter', sans-serif" font-size="18">
+    <text x="810" y="170" text-anchor="middle">Atrium</text>
+    <text x="480" y="620" text-anchor="middle">Collaboration Zone</text>
+    <text x="1120" y="620" text-anchor="middle">Project Zone</text>
+  </g>
+  <g stroke="#6b7280" stroke-dasharray="6 8" stroke-width="2">
+    <line x1="320" y1="360" x2="640" y2="360" />
+    <line x1="960" y1="360" x2="1280" y2="360" />
+  </g>
+  <g fill="#9ba6b4" font-family="'Inter', sans-serif" font-size="14">
+    <text x="360" y="200">Pods</text>
+    <text x="360" y="240">Huddle</text>
+    <text x="360" y="400">Focus</text>
+    <text x="360" y="440">Stand-up</text>
+
+    <text x="1000" y="200">Pods</text>
+    <text x="1000" y="240">Huddle</text>
+    <text x="1000" y="400">Focus</text>
+    <text x="1000" y="440">Stand-up</text>
+  </g>
+</svg>
