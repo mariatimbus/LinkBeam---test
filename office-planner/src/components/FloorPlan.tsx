@@ -45,7 +45,7 @@ function FloorPlanComponent({ spaces, selectedSpaceId, onSelect, selectedDate }:
 
   return (
     <div className="floor-plan">
-      <img src="/floorplan.svg" alt="Simplified office floor plan" className="floor-plan__image" />
+      <img src="/floorplan.svg" alt="Detailed office floor plate with central core and desk wings" className="floor-plan__image" />
       {spaces.map((space) => {
         const availability = getAvailabilityBadge(space.id, selectedDate, bookingContext.isSpaceAvailable, bookingContext.bookings);
         const isSelected = selectedSpaceId === space.id;
